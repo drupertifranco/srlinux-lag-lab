@@ -1,0 +1,26 @@
+name: lab-lag
+
+topology:
+  kinds:
+    srl:
+      image: ghcr.io/nokia/srlinux:23.7.1
+    linux:
+      image: ghcr.io/srl-labs/alpine:latest
+
+  nodes:
+    # srl nodes with startup configs
+    leaf1:
+      kind: srl
+      type: ixrd2
+    ce1:
+      kind: linux
+      binds:  
+        - configs/ce1-config.sh:/ce1-config.sh
+      exec:
+        - bash /ce1-config.sh    
+
+  links:
+    # ce links
+    - endpoints: ["ce1:eth1", "leaf1:e1-1"]
+    - endpoints: ["ce1:eth2", "leaf1:e1-2"]
+
