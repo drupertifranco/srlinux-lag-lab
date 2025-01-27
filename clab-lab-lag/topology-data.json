@@ -1,0 +1,127 @@
+{
+  "name": "lab-lag",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-290b1aa88b54",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "2001:172:20:20::/64",
+        "ipv6-gw": "2001:172:20:20::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "nodes": {
+    "ce1": {
+      "index": "0",
+      "shortname": "ce1",
+      "longname": "clab-lab-lag-ce1",
+      "fqdn": "ce1.lab-lag.io",
+      "group": "",
+      "labdir": "/workspaces/srlinux-lag-lab/clab-lab-lag/ce1",
+      "kind": "linux",
+      "image": "ghcr.io/srl-labs/alpine:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-290b1aa88b54",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/workspaces/srlinux-lag-lab/clab-lab-lag/ce1",
+        "clab-node-name": "ce1",
+        "clab-node-type": "",
+        "clab-topo-file": "/workspaces/srlinux-lag-lab/lag.clab.yml",
+        "containerlab": "lab-lag"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "leaf1": {
+      "index": "1",
+      "shortname": "leaf1",
+      "longname": "clab-lab-lag-leaf1",
+      "fqdn": "leaf1.lab-lag.io",
+      "group": "",
+      "labdir": "/workspaces/srlinux-lag-lab/clab-lab-lag/leaf1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:23.7.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:b5:01:00:00:00",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-290b1aa88b54",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/workspaces/srlinux-lag-lab/clab-lab-lag/leaf1",
+        "clab-node-name": "leaf1",
+        "clab-node-type": "ixrd2",
+        "clab-topo-file": "/workspaces/srlinux-lag-lab/lag.clab.yml",
+        "containerlab": "lab-lag"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "ce1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:ff:d6:e9",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1",
+        "interface": "e1-1",
+        "mac": "aa:c1:ab:80:54:9a",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "ce1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:fe:fd:c2",
+        "peer": "z"
+      },
+      "z": {
+        "node": "leaf1",
+        "interface": "e1-2",
+        "mac": "aa:c1:ab:8a:3c:c2",
+        "peer": "a"
+      }
+    }
+  ]
+}

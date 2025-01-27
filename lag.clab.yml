@@ -15,7 +15,7 @@ topology:
     ce1:
       kind: linux
       binds:  
-        - configs/ce1-config.sh:/ce1-config.sh
+        - config/ce1-config.sh:/ce1-config.sh
       exec:
         - bash /ce1-config.sh    
 

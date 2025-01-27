@@ -1,0 +1,8 @@
+set / interface ethernet-1/1 vlan-tagging true
+set / interface ethernet-1/1 subinterface 0 type bridged
+set / interface ethernet-1/1 subinterface 0 admin-state enable
+set / interface ethernet-1/1 subinterface 0 vlan encap untagged
+set / interface ethernet-1/2 vlan-tagging true
+set / interface ethernet-1/2 subinterface 0 type bridged
+set / interface ethernet-1/2 subinterface 0 admin-state enable
+set / interface ethernet-1/2 subinterface 0 vlan encap untagged
